@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: next-ai-draw-io
+  namespace: next-ai-draw-io
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: next-ai-draw-io.hijason.me
+    http:
+      paths:
+      - backend:
+          service:
+            name: next-ai-draw-io
+            port:
+              number: 443
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - next-ai-draw-io.hijason.me
