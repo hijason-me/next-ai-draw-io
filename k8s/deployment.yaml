@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next-ai-draw-io
+  namespace: draw-io
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: next-ai-draw-io
+  template:
+    metadata:
+      labels:
+        app: next-ai-draw-io
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/hijason-me/next-ai-draw-io:latest # 或是您自行 build 的 image
+        ports:
+        - containerPort: 3000
+        env:
+        # 非敏感變數直接寫
+        - name: NEXT_PUBLIC_DRAWIO_BASE_URL
+          value: "https://embed.diagrams.net"
+        # 非敏感變數直接寫
+        - name: AI_MODEL
+          value: "nvidia/nemotron-3-nano-30b-a3b:free"
+        # 敏感變數從 Secret 讀取
+        - name: ACCESS_CODE_LIST
+          valueFrom:
+            secretKeyRef:
+              name: access-code-list
+              key: access-code
+        # 敏感變數從 Secret 讀取
+        - name: OPENROUTER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openrouter-api-key
+              key: key
