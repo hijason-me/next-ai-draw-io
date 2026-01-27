@@ -12,5 +12,5 @@ spec:
     protocol: TCP
     targetPort: 3000
   selector:
-    run: next-ai-draw-io
+    app: next-ai-draw-io
   type: ClusterIP
