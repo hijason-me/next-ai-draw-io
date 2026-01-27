@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: next-ai-draw-io
+  name: next-ai-draw-io
+  namespace: next-ai-draw-io
+spec:
+  ports:
+  - name: 443-3000
+    port: 443
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: next-ai-draw-io
+  type: ClusterIP
