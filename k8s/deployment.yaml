@@ -24,7 +24,7 @@ spec:
           value: "https://embed.diagrams.net"
         # 非敏感變數直接寫
         - name: AI_MODEL
-          value: "nvidia/nemotron-3-nano-30b-a3b:free"
+          value: "nvidia/nemotron-3-super-120b-a12b:free"
         # 敏感變數從 Secret 讀取
         - name: ACCESS_CODE_LIST
           valueFrom:
